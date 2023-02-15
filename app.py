@@ -136,7 +136,14 @@ rating_input=st.selectbox('Rate the product',(1,2,3,4,5))
 vp_input=st.selectbox('Is it a verified purchase',('Y','N'))
 pc_input=st.selectbox('Select category',categories)
 
-if st.button('Classify Review'):
+flag=0
+if len(review_input)>0:
+    flag=1
+else:
+    flag=0
+    st.error('Enter the review properly')
+
+if st.button('Classify Review') and flag==1:
     result=computeresult(review_input,rating_input,vp_input,pc_input)
     if result==1:
         st.success('Original Review')
